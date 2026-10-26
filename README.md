@@ -46,7 +46,7 @@ flock-energy-api/
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_PUBLIC_GITHUB_REPOSITORY_URL>
+git clone https://github.com/shubha229/flock-energy-api
 cd flock-energy-api
 ```
 
