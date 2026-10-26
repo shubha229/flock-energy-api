@@ -67,7 +67,13 @@ pip install -r requirements.txt
 
 ### 4. Configure environment variables
 
-Copy `.env.example` to `.env` and fill in the portal credentials locally.
+Copy the example environment file to `.env`:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Open `.env` and replace the placeholder values with the portal credentials provided for the assignment.
 
 Example configuration:
 
@@ -77,7 +83,7 @@ PORTAL_USERNAME=your_portal_username
 PORTAL_PASSWORD=your_portal_password
 ```
 
-Never commit `.env` or publish portal credentials, session cookies, or other secrets.
+Keep `.env` local. Never commit portal credentials, session cookies, or other secrets to GitHub.
 
 ## Run the API
 
@@ -99,6 +105,12 @@ Once running, open:
 | GET | `/meters?q=&page=1` | Search meters with pagination |
 | GET | `/meters/{meter_id}/location` | Retrieve meter coordinates |
 | GET | `/meters/{meter_id}/energy` | Retrieve energy readings |
+
+## Error Handling
+
+- Invalid meter IDs return a 404 response when the upstream portal indicates that the meter was not found.
+- Upstream portal failures are translated into API error responses.
+- Invalid pagination parameters are rejected by the API.
 
 ### Example requests
 
@@ -140,9 +152,9 @@ The current test suite covers the health endpoint, meter search, page validation
 
 ## Documentation
 
-- [`PROTOCOL.md`](PROTOCOL.md): Observed portal behavior, authentication, endpoints, and relevant assumptions.
-- [`openapi.json`](openapi.json): OpenAPI specification generated from the FastAPI application.
-- [`REFLECTION.md`](REFLECTION.md): Assignment reflection and engineering decisions.
+- [PROTOCOL.md](PROTOCOL.md): Observed portal behavior, authentication, endpoints, and assumptions.
+- [openapi.json](openapi.json): OpenAPI specification generated from the FastAPI application.
+- [REFLECTION.md](REFLECTION.md): Assignment reflection and engineering decisions.
 
 ## Assumptions and Trade-offs
 
